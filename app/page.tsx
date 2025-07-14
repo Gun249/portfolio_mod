@@ -26,6 +26,15 @@ export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("hero")
   const [isDarkMode, setIsDarkMode] = useState(false)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false)
+
+  const projectImages = [
+    { src: "/ร่างกาย.png", alt: "IT359 Project Screenshot 1" },
+    { src: "/หน้าหลัก.png", alt: "IT359 Project Screenshot 2" },
+    { src: "/อาหาร.png", alt: "IT359 Project Screenshot 3" },
+    { src: "/อาหาร2.png", alt: "IT359 Project Screenshot 4" }
+  ]
 
   useEffect(() => {
     // Check for saved theme preference or default to light mode
@@ -82,6 +91,22 @@ export default function Portfolio() {
     { id: "projects", label: "Projects" },
     { id: "contact", label: "Contact" },
   ]
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % projectImages.length)
+  }
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + projectImages.length) % projectImages.length)
+  }
+
+  const openImageModal = () => {
+    setIsImageModalOpen(true)
+  }
+
+  const closeImageModal = () => {
+    setIsImageModalOpen(false)
+  }
 
   const themeClasses = {
     background: isDarkMode ? "bg-stone-900" : "bg-amber-50",
@@ -195,7 +220,7 @@ export default function Portfolio() {
             </span>
           </h1>
           <p className={`text-xl sm:text-2xl mb-8 transition-colors duration-300 ${themeClasses.muted}`}>
-            Computer Science Student & Aspiring Developer
+            UX/UI design
           </p>
           <button
             onClick={() => scrollToSection("about")}
@@ -217,12 +242,9 @@ export default function Portfolio() {
             className={`rounded-lg p-8 border transition-colors duration-300 ${themeClasses.cardBg} ${themeClasses.cardBorder}`}
           >
             <p className={`text-lg leading-relaxed transition-colors duration-300 ${themeClasses.muted}`}>
-              I am a passionate Computer Science student with a strong foundation in programming and software
-              development. My journey in technology began with curiosity about how things work, and has evolved into a
-              deep appreciation for creating solutions that make a difference. I enjoy tackling complex problems,
-              learning new technologies, and collaborating with others to build innovative projects. My goal is to
-              contribute to meaningful software development projects while continuously growing my skills in this
-              ever-evolving field.
+              Hello! My name is Pattarawadee Nuanta, but you can call me "Mod." I am currently a 4th-year student majoring in Computer Science in the Faculty of Information Technology and Innovation at Bangkok University.
+              Although my field of study mainly focuses on programming and advanced technology, I discovered a special interest in UX/UI Design. I enjoy creating designs that prioritize user experience and making technology more accessible and practical.
+              With this passion, I have dedicated myself to developing my UX/UI skills outside of class through self-study, experimenting with Figma, and learning from real-world examples. I am always open to feedback and eager to grow professionally in this field.
             </p>
           </div>
         </div>
@@ -245,13 +267,13 @@ export default function Portfolio() {
               <h3
                 className={`text-xl font-bold mb-2 group-hover:text-amber-300 transition-colors duration-300 ${themeClasses.accent}`}
               >
-                Bachelor of Science in Computer Science
+                Bangkok University
               </h3>
-              <p className={`mb-2 transition-colors duration-300 ${themeClasses.muted}`}>University Name</p>
-              <p className={`mb-4 transition-colors duration-300 ${themeClasses.mutedLight}`}>2021 - Present</p>
+              <p className={`mb-2 transition-colors duration-300 ${themeClasses.muted}`}>Faculty of Information Technology and Innovation , Bachelor of Computer Science</p>
+              <p className={`mb-4 transition-colors duration-300 ${themeClasses.mutedLight}`}>2022 - Present</p>
               <div className="flex items-center">
                 <span className={`text-sm mr-2 transition-colors duration-300 ${themeClasses.mutedLight}`}>GPA:</span>
-                <span className={`font-semibold transition-colors duration-300 ${themeClasses.accent}`}>3.75/4.00</span>
+                <span className={`font-semibold transition-colors duration-300 ${themeClasses.accent}`}>3.75</span>
               </div>
             </div>
             <div
@@ -260,13 +282,13 @@ export default function Portfolio() {
               <h3
                 className={`text-xl font-bold mb-2 group-hover:text-amber-300 transition-colors duration-300 ${themeClasses.accent}`}
               >
-                High School Diploma
+                Nongkhae Sorakit Pittaya School
               </h3>
-              <p className={`mb-2 transition-colors duration-300 ${themeClasses.muted}`}>High School Name</p>
-              <p className={`mb-4 transition-colors duration-300 ${themeClasses.mutedLight}`}>2018 - 2021</p>
+              <p className={`mb-2 transition-colors duration-300 ${themeClasses.muted}`}>Science-Mathematics Program</p>
+              <p className={`mb-4 transition-colors duration-300 ${themeClasses.mutedLight}`}>2016 - 2022</p>
               <div className="flex items-center">
                 <span className={`text-sm mr-2 transition-colors duration-300 ${themeClasses.mutedLight}`}>GPA:</span>
-                <span className={`font-semibold transition-colors duration-300 ${themeClasses.accent}`}>3.90/4.00</span>
+                <span className={`font-semibold transition-colors duration-300 ${themeClasses.accent}`}>3.90</span>
               </div>
             </div>
           </div>
@@ -303,24 +325,6 @@ export default function Portfolio() {
                     >
                       Python
                     </span>
-                    <span
-                      className={`px-3 py-1 rounded-full text-sm border transition-colors duration-300 ${
-                        isDarkMode
-                          ? "bg-amber-600/20 text-amber-300 border-amber-500/30"
-                          : "bg-amber-200 text-amber-800 border-amber-300"
-                      }`}
-                    >
-                      JavaScript
-                    </span>
-                    <span
-                      className={`px-3 py-1 rounded-full text-sm border transition-colors duration-300 ${
-                        isDarkMode
-                          ? "bg-amber-600/20 text-amber-300 border-amber-500/30"
-                          : "bg-amber-200 text-amber-800 border-amber-300"
-                      }`}
-                    >
-                      HTML/CSS
-                    </span>
                   </div>
                 </div>
               </div>
@@ -337,18 +341,22 @@ export default function Portfolio() {
                   <ul className="space-y-3">
                     <li className={`flex items-center transition-colors duration-300 ${themeClasses.muted}`}>
                       <Heart className={`mr-3 transition-colors duration-300 ${themeClasses.accent}`} size={16} />
-                      Teamwork & Collaboration
+                      Strong team player, adaptable, and quick to get along with others
                     </li>
                     <li className={`flex items-center transition-colors duration-300 ${themeClasses.muted}`}>
                       <Lightbulb className={`mr-3 transition-colors duration-300 ${themeClasses.accent}`} size={16} />
-                      Adaptability & Learning
+                      Responsible and attentive to the quality of work
                     </li>
                     <li className={`flex items-center transition-colors duration-300 ${themeClasses.muted}`}>
                       <MessageSquare
                         className={`mr-3 transition-colors duration-300 ${themeClasses.accent}`}
                         size={16}
                       />
-                      Communication
+                      Positive mindset with perseverance in the face of challenges
+                    </li>
+                    <li className={`flex items-center transition-colors duration-300 ${themeClasses.muted}`}>
+                      <User className={`mr-3 transition-colors duration-300 ${themeClasses.accent}`} size={16} />
+                      Continuously open to learning new things
                     </li>
                   </ul>
                 </div>
@@ -361,32 +369,116 @@ export default function Portfolio() {
                 Tools & Technologies
               </h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                {/* Figma */}
                 <div
                   className={`rounded-lg p-6 border hover:border-amber-400/50 transition-all duration-300 text-center group ${themeClasses.cardBg} ${themeClasses.cardBorder}`}
                 >
-                  <div className="w-12 h-12 mx-auto mb-3 bg-blue-500/20 rounded-lg flex items-center justify-center group-hover:bg-amber-500/20 transition-colors duration-300">
-                    <Code
-                      className="text-blue-400 group-hover:text-amber-400 transition-colors duration-300"
-                      size={24}
+                  <div className="w-12 h-12 mx-auto mb-3 bg-transparent rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+                    <Image
+                      src="/figma-icon.png"
+                      alt="Figma"
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 object-contain transition-transform duration-300"
+                    />
+                  </div>
+                  <p className={`text-sm transition-colors duration-300 ${themeClasses.muted}`}>Figma</p>
+                </div>
+
+                {/* Canva */}
+                <div
+                  className={`rounded-lg p-6 border hover:border-amber-400/50 transition-all duration-300 text-center group ${themeClasses.cardBg} ${themeClasses.cardBorder}`}
+                >
+                  <div className="w-12 h-12 mx-auto mb-3 bg-transparent rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+                    <Image
+                      src="/Canva-Icon.png"
+                      alt="Canva"
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 object-contain transition-transform duration-300"
+                    />
+                  </div>
+                  <p className={`text-sm transition-colors duration-300 ${themeClasses.muted}`}>Canva</p>
+                </div>
+
+                {/* Visual Studio Code */}
+                <div
+                  className={`rounded-lg p-6 border hover:border-amber-400/50 transition-all duration-300 text-center group ${themeClasses.cardBg} ${themeClasses.cardBorder}`}
+                >
+                  <div className="w-12 h-12 mx-auto mb-3 bg-transparent rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+                    <Image
+                      src="/VScode-Icon.png"
+                      alt="Visual Studio Code"
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 object-contain transition-transform duration-300"
                     />
                   </div>
                   <p className={`text-sm transition-colors duration-300 ${themeClasses.muted}`}>VS Code</p>
                 </div>
+
+                {/* Microsoft Teams */}
                 <div
                   className={`rounded-lg p-6 border hover:border-amber-400/50 transition-all duration-300 text-center group ${themeClasses.cardBg} ${themeClasses.cardBorder}`}
                 >
-                  <div className="w-12 h-12 mx-auto mb-3 bg-purple-500/20 rounded-lg flex items-center justify-center group-hover:bg-amber-500/20 transition-colors duration-300">
-                    <div className="w-6 h-6 bg-purple-400 group-hover:bg-amber-400 rounded transition-colors duration-300"></div>
+                  <div className="w-12 h-12 mx-auto mb-3 bg-transparent rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+                    <Image
+                      src="/Microsoft-Teams-Icon.png"
+                      alt="Microsoft Teams"
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 object-contain transition-transform duration-300"
+                    />
                   </div>
-                  <p className={`text-sm transition-colors duration-300 ${themeClasses.muted}`}>Figma</p>
+                  <p className={`text-sm transition-colors duration-300 ${themeClasses.muted}`}>Teams</p>
                 </div>
+
+                {/* Microsoft PowerPoint */}
                 <div
                   className={`rounded-lg p-6 border hover:border-amber-400/50 transition-all duration-300 text-center group ${themeClasses.cardBg} ${themeClasses.cardBorder}`}
                 >
-                  <div className="w-12 h-12 mx-auto mb-3 bg-orange-500/20 rounded-lg flex items-center justify-center group-hover:bg-amber-500/20 transition-colors duration-300">
-                    <div className="w-6 h-6 bg-orange-400 group-hover:bg-amber-400 rounded transition-colors duration-300"></div>
+                  <div className="w-12 h-12 mx-auto mb-3 bg-transparent rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+                    <Image
+                      src="/Power-point_Icon.png"
+                      alt="Microsoft PowerPoint"
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 object-contain transition-transform duration-300"
+                    />
                   </div>
-                  <p className={`text-sm transition-colors duration-300 ${themeClasses.muted}`}>Office Suite</p>
+                  <p className={`text-sm transition-colors duration-300 ${themeClasses.muted}`}>PowerPoint</p>
+                </div>
+
+                {/* Microsoft Word */}
+                <div
+                  className={`rounded-lg p-6 border hover:border-amber-400/50 transition-all duration-300 text-center group ${themeClasses.cardBg} ${themeClasses.cardBorder}`}
+                >
+                  <div className="w-12 h-12 mx-auto mb-3 bg-transparent rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+                    <Image
+                      src="/Word_Icon.png"
+                      alt="Microsoft Word"
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 object-contain transition-transform duration-300"
+                    />
+                  </div>
+                  <p className={`text-sm transition-colors duration-300 ${themeClasses.muted}`}>Word</p>
+                </div>
+
+                {/* Microsoft Excel */}
+                <div
+                  className={`rounded-lg p-6 border hover:border-amber-400/50 transition-all duration-300 text-center group ${themeClasses.cardBg} ${themeClasses.cardBorder}`}
+                >
+                  <div className="w-12 h-12 mx-auto mb-3 bg-transparent rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+                    <Image
+                      src="/Excel_Icon.png"
+                      alt="Microsoft Excel"
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 object-contain transition-transform duration-300"
+                    />
+                  </div>
+                  <p className={`text-sm transition-colors duration-300 ${themeClasses.muted}`}>Excel</p>
                 </div>
               </div>
             </div>
@@ -409,17 +501,54 @@ export default function Portfolio() {
           >
             <div className="md:flex">
               <div className="md:w-1/2">
-                <Image
-                  src="/placeholder.svg?height=300&width=400"
-                  alt="IT359 Project Screenshot"
-                  width={400}
-                  height={300}
-                  className="w-full h-64 md:h-full object-cover"
-                />
+                <div className="relative h-64 md:h-80 bg-gray-100 rounded-lg overflow-hidden">
+                  <Image
+                    src={projectImages[currentImageIndex].src}
+                    alt={projectImages[currentImageIndex].alt}
+                    width={400}
+                    height={300}
+                    className="w-full h-full object-cover transition-all duration-500 cursor-pointer"
+                    onClick={openImageModal}
+                  />
+                  
+                  {/* Navigation Arrows */}
+                  <button
+                    onClick={prevImage}
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  
+                  <button
+                    onClick={nextImage}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+
+                  {/* Dots Indicator */}
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                    {projectImages.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentImageIndex(index)}
+                        className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                          index === currentImageIndex 
+                            ? 'bg-white' 
+                            : 'bg-white/50 hover:bg-white/70'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
               <div className="md:w-1/2 p-8">
                 <h3 className={`text-2xl font-bold mb-4 transition-colors duration-300 ${themeClasses.accent}`}>
-                  IT359 Project
+                  Healthclub
                 </h3>
                 <p className={`mb-6 leading-relaxed transition-colors duration-300 ${themeClasses.muted}`}>
                   A comprehensive web application developed as part of the IT359 course. This project demonstrates
@@ -440,39 +569,13 @@ export default function Portfolio() {
                           : "bg-amber-200 text-amber-800 border-amber-300"
                       }`}
                     >
-                      Python
-                    </span>
-                    <span
-                      className={`px-3 py-1 rounded-full text-sm border transition-colors duration-300 ${
-                        isDarkMode
-                          ? "bg-amber-600/20 text-amber-300 border-amber-500/30"
-                          : "bg-amber-200 text-amber-800 border-amber-300"
-                      }`}
-                    >
-                      Flask
-                    </span>
-                    <span
-                      className={`px-3 py-1 rounded-full text-sm border transition-colors duration-300 ${
-                        isDarkMode
-                          ? "bg-amber-600/20 text-amber-300 border-amber-500/30"
-                          : "bg-amber-200 text-amber-800 border-amber-300"
-                      }`}
-                    >
-                      SQLite
-                    </span>
-                    <span
-                      className={`px-3 py-1 rounded-full text-sm border transition-colors duration-300 ${
-                        isDarkMode
-                          ? "bg-amber-600/20 text-amber-300 border-amber-500/30"
-                          : "bg-amber-200 text-amber-800 border-amber-300"
-                      }`}
-                    >
-                      HTML/CSS
+                      Figma
                     </span>
                   </div>
                 </div>
                 <button
-                  className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-lg shadow-amber-500/25 flex items-center text-white ${themeClasses.button}`}
+                  onClick={() => window.open("https://www.figma.com/proto/LCntHv7Pl5A87pPvBDmcDR/Health-hub?node-id=289-729&p=f&t=MePoxeZQzM9Zx2np-0&scaling=scale-down&content-scaling=fixed&page-id=1%3A3&starting-point-node-id=289%3A729", "_blank")}
+                  className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-lg shadow-amber-500/25 flex items-center text-white ${themeClasses.button} cursor-pointer`}
                 >
                   View Details
                   <ExternalLink className="ml-2" size={16} />
@@ -482,6 +585,80 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
+
+      {/* Image Modal */}
+      {isImageModalOpen && (
+        <div 
+          className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4"
+          onClick={closeImageModal}
+        >
+          <div className="relative max-w-7xl max-h-screen w-full h-full flex items-center justify-center">
+            <Image
+              src={projectImages[currentImageIndex].src}
+              alt={projectImages[currentImageIndex].alt}
+              width={800}
+              height={600}
+              className="max-w-full max-h-full object-contain"
+              onClick={(e) => e.stopPropagation()}
+            />
+            
+            {/* Close Button */}
+            <button
+              onClick={closeImageModal}
+              className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            
+            {/* Navigation in Modal */}
+            {projectImages.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    prevImage()
+                  }}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    nextImage()
+                  }}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+
+                {/* Dots Indicator in Modal */}
+                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3">
+                  {projectImages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setCurrentImageIndex(index)
+                      }}
+                      className={`w-4 h-4 rounded-full transition-all duration-200 ${
+                        index === currentImageIndex 
+                          ? 'bg-white' 
+                          : 'bg-white/50 hover:bg-white/70'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Contact Footer */}
       <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
@@ -497,14 +674,14 @@ export default function Portfolio() {
                 <Mail className={`transition-colors duration-300 ${themeClasses.accent}`} size={24} />
               </div>
               <h3 className="font-semibold mb-2">Email</h3>
-              <p className={`transition-colors duration-300 ${themeClasses.mutedLight}`}>mod.nuanta@email.com</p>
+              <p className={`transition-colors duration-300 ${themeClasses.mutedLight}`}>noi11102546@gmail.com</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mb-4">
                 <Phone className={`transition-colors duration-300 ${themeClasses.accent}`} size={24} />
               </div>
               <h3 className="font-semibold mb-2">Phone</h3>
-              <p className={`transition-colors duration-300 ${themeClasses.mutedLight}`}>+66 XX XXX XXXX</p>
+              <p className={`transition-colors duration-300 ${themeClasses.mutedLight}`}>+66 92-410-6151</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mb-4">
@@ -516,7 +693,7 @@ export default function Portfolio() {
           </div>
 
           <div className="flex justify-center space-x-6">
-            <a
+            {/* <a
               href="#"
               className={`w-12 h-12 rounded-full flex items-center justify-center border hover:border-amber-400 hover:bg-amber-200 transition-all duration-300 group ${themeClasses.cardBgSolid} ${themeClasses.cardBorder} ${
                 isDarkMode ? "hover:bg-amber-600/20" : "hover:bg-amber-200"
@@ -541,7 +718,7 @@ export default function Portfolio() {
                 }`}
                 size={20}
               />
-            </a>
+            </a> */}
           </div>
         </div>
       </section>
@@ -552,7 +729,7 @@ export default function Portfolio() {
       >
         <div className="max-w-6xl mx-auto text-center">
           <p className={`transition-colors duration-300 ${themeClasses.footerText}`}>
-            © 2024 Pattarawadee Nuanta. All rights reserved.
+            © {new Date().getFullYear()} Pattarawadee Nuanta. All rights reserved.
           </p>
         </div>
       </footer>
