@@ -202,7 +202,7 @@ export default function Portfolio() {
           <div className="relative mb-8">
             <div className="w-48 h-48 mx-auto rounded-full overflow-hidden ring-4 ring-amber-400/30 shadow-2xl shadow-amber-400/20">
               <Image
-                src="/placeholder.svg?height=192&width=192"
+                src="/Messenger_creation_B2B89641-225B-46F6-80C8-D565D997D851.jpeg"
                 alt="Pattarawadee Nuanta Profile"
                 width={192}
                 height={192}
@@ -551,9 +551,11 @@ export default function Portfolio() {
                   Healthclub
                 </h3>
                 <p className={`mb-6 leading-relaxed transition-colors duration-300 ${themeClasses.muted}`}>
-                  A comprehensive web application developed as part of the IT359 course. This project demonstrates
-                  full-stack development skills, including user authentication, database management, and responsive
-                  design principles. The application features a modern interface and robust backend functionality.
+                  HealthClub is a health-focused application that provides a wide range of healthy food options and exercise routines. It includes features such as ingredient scanning to display nutritional benefits and a body scanning function to measure body proportions. This data is then used to calculate the Body Mass Index (BMI).
+
+The calculated results are further used to generate personalized health plans, including food and workout recommendations that best suit the individual’s body.
+
+My role involved designing the application and researching relevant information necessary for the development of the design.
                 </p>
                 <div className="mb-6">
                   <h4
