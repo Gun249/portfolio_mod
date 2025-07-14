@@ -273,7 +273,7 @@ export default function Portfolio() {
               <p className={`mb-4 transition-colors duration-300 ${themeClasses.mutedLight}`}>2022 - Present</p>
               <div className="flex items-center">
                 <span className={`text-sm mr-2 transition-colors duration-300 ${themeClasses.mutedLight}`}>GPA:</span>
-                <span className={`font-semibold transition-colors duration-300 ${themeClasses.accent}`}>3.75</span>
+                <span className={`font-semibold transition-colors duration-300 ${themeClasses.accent}`}>3.67</span>
               </div>
             </div>
             <div
@@ -288,7 +288,7 @@ export default function Portfolio() {
               <p className={`mb-4 transition-colors duration-300 ${themeClasses.mutedLight}`}>2016 - 2022</p>
               <div className="flex items-center">
                 <span className={`text-sm mr-2 transition-colors duration-300 ${themeClasses.mutedLight}`}>GPA:</span>
-                <span className={`font-semibold transition-colors duration-300 ${themeClasses.accent}`}>3.90</span>
+                <span className={`font-semibold transition-colors duration-300 ${themeClasses.accent}`}>3.19</span>
               </div>
             </div>
           </div>
